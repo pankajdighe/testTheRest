@@ -1,0 +1,106 @@
+
+
+<html>
+
+	<head>
+  		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+
+ 		<script type="text/javascript">
+
+				  angular.module('testtherest', [])
+				    .controller('RestController', ['$scope','$http', function($scope,$http) {
+
+
+				    	 $scope.checkEndPoint = function(method,url) {
+				       
+				       $scope.method=method;
+
+				          $http({method: $scope.method,url:url}).
+				          then(function(response) {
+				            $scope.status = response.status;
+				            $scope.data = response.data;
+				          }, function(response) {
+				            $scope.data = response.data || 'Request failed';
+				            $scope.status = response.status;
+				        });
+
+
+				      };
+				      
+				      $scope.url = {
+				        text: 'http://google.com'
+				      };
+					
+
+
+				    }]);
+				
+
+ 		</script>
+
+	</head>
+
+	<body ng-app="testtherest">
+		<div id="main_div">
+
+			<div id="header"></div>
+			<div id="content">
+
+				<div id="element_a">
+                   
+                       <h2>Test the REST</h2>
+
+                       <div id="" >  
+                       		
+                       		<form name="restDetailForm" ng-controller='RestController'  >
+
+                       			 <select ng-model="method"  aria-label="Request method">
+								    <option>GET</option>
+								    <option>POST</option>
+								  </select>
+
+                       			 <label>Enter API END Point :
+   									 <input type="url" name="input_rest_end_point" ng-model="url.text" required>
+   								 </label>
+   								 <div role="alert">
+								    <span class="error" ng-show="restDetailForm.input_rest_end_point.$error.required">
+								      Required!</span>
+								    <span class="error" ng-show="restDetailForm.input_rest_end_point.$error.url">
+								      Not valid url!</span>
+								 </div>
+
+								 <div ng-show="{{restDetailForm.$valid}}">
+
+		                       		<button ng-click="checkEndPoint('{{method}}','{{url.text}}')" ng-init="count=0">
+									  Check API
+									</button>
+
+									<div id="api_test_result">
+										<pre>Method Selected is: {{method}}</pre>
+										<pre>Status Code Recieved is: {{status}}</pre>
+  										<pre>Response Data is : {{data}}</pre>
+
+									</div>
+
+                       			</div>
+
+                       		</form>	
+
+                       		
+
+
+
+                       </div>
+
+				</div>
+
+
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
