@@ -1,0 +1,22 @@
+{
+  "name": "test_the_rest",
+  "version": "1.0.0",
+  "description": "This application helps engineers to test REST API ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pankajdighe/testTheRest.git"
+  },
+  "author": "Pankaj Dighe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pankajdighe/testTheRest/issues"
+  },
+  "homepage": "https://github.com/pankajdighe/testTheRest#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
